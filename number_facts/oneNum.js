@@ -21,6 +21,7 @@ async function processForm(evt) {
 
 /** showResults: Append lucky number information to the DOM.
  **/
+// TODO: Edit parameter name
 
 function showResults(num) {
   $results.html(`

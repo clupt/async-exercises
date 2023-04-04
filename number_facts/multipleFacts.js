@@ -17,16 +17,27 @@ async function getFourLuckyFacts(evt) {
 
   const num = $("#luckyNum").val();
 
-  const resp = await axios.get(`${BASE_URL}${num}?json`);
-  const resp2 = await axios.get(`${BASE_URL}${num}?json`);
-  const resp3 = await axios.get(`${BASE_URL}${num}?json`);
-  const resp4 = await axios.get(`${BASE_URL}${num}?json`);
+  //TODO: Edit variable names to 'factPromise_'
+  const factPromiseOne = axios.get(`${BASE_URL}${num}?json`);
+  const factPromiseTwo = axios.get(`${BASE_URL}${num}?json`);
+  const factPromiseThree = axios.get(`${BASE_URL}${num}?json`);
+  const factPromiseFour = axios.get(`${BASE_URL}${num}?json`);
 
-  let results = await Promise.all([resp, resp2, resp3, resp4]);
+  // TODO: Pass in updated variable names
+  // TODO: Update to allSettled()
+  // TODO: Update let to const (never changing)
+  let results = await Promise.allSettled([
+    factPromiseOne,
+    factPromiseTwo,
+    factPromiseThree,
+    factPromiseFour,
+  ]);
   // Promise.all accepts an array of promises and returns a new promise
   let text = results.map((result) => result.data.text);
   displayMultipleFacts(text);
 }
+
+// ADD DOCSTRING
 
 function displayMultipleFacts(text) {
   for (let fact of text) {
